@@ -6,5 +6,4 @@ sub=['manelkar','joydeep','arghyadeep','keshob']
 shuffle(adj)
 
 for i in range(len(sub)):
-    print(sub,'is',adj)
-    
+    print(sub[i],'is',adj[i])
