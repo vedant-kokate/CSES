@@ -6,16 +6,20 @@ n=int(input())
 #s=stdin.readline()
 if n==3 or n==2:
     print("NO SOLUTION")
-elif n==4:
-    print("2 4 1 3")
+# elif n==4:
+#     print("2 4 1 3")
 else:
-    a=1
-    b=math.ceil(n/2)+1
-    for i in range(n):
-        if i%2==0:
-            print(a,end=" ")
-            a+=1
-        else:
-            print(b,end=" ")
-            b+=1
-    
+    # a=1
+    # b=math.ceil(n/2)+1
+    # for i in range(n):
+    #     if i%2==0:
+    #         print(a,end=" ")
+    #         a+=1
+    #     else:
+    #         print(b,end=" ")
+    #         b+=1
+
+    for i in range(2,n+1,2):
+        print(i,end=" ")
+    for i in range(1,n+1,2):
+        print(i,end=" ")

@@ -6,8 +6,9 @@ n=int(input())
 a=list(get_ints())
 ans=0
 for i in range(1,n):
-    if a[i]<a[i-1]:
-        ans+=a[i-1]-a[i]
-        a[i]=a[i-1]
+    f,s = a[i-1],a[i]
+    if s<f:
+        ans+=f-s
+        a[i]=f
 print(ans)
         
