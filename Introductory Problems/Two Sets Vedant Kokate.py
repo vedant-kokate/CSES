@@ -7,6 +7,7 @@ b=[]
 x=n%4
 if x==1 or x==2:
     print("NO")
+    exit()
 elif x==0:
     for i in range(1,n+1):
         if i%4==0 or i%4==1:

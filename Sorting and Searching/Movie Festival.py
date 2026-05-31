@@ -1,3 +1,6 @@
+# In a movie festival n movies will be shown. You know the starting and ending time of each movie. What is the maximum number of movies you can watch entirely?
+
+
 from sys import stdin, stdout
 import sys 
 def get_ints(): return map(int, sys.stdin.readline().strip().split())
@@ -15,4 +18,5 @@ c=1
 for i in range(1,n):
     if a[i][0]>=end:
         end=a[i][1]
-        c+
+        c+=1
+print(c)
