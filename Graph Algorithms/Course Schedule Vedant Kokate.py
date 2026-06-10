@@ -10,23 +10,27 @@ for i in range(m):
     g[a-1].append(b-1)
 
 def dfs(v):
-    # print(v,cycle)
     global isCycle
-    visited[v]=True
+    visited[v] = 1
     for u in g[v]:
-        if u==i:
-            # print('u,v',v,u)
-            isCycle=True
-        if not visited[u]:
+        if visited[u] == 0:
             dfs(u)
-    ans.append(v+1)
+            if isCycle:
+                return
+        elif visited[u] == 1:
+            isCycle = True
+            return
+    visited[v] = 2
+    ans.append(v + 1)
 
-visited=[False]*n
-isCycle=False
-ans=[]
+visited = [0] * n
+isCycle = False
+ans = []
 for i in range(n):
-    if not visited[i]:
+    if visited[i] == 0:
         dfs(i)
+        if isCycle:
+            break
 if isCycle:
     print("IMPOSSIBLE")
     sys.exit()

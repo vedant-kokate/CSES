@@ -1,27 +1,32 @@
-import heapq
 import sys
-from collections import defaultdict
-def get_ints(): return map(int, sys.stdin.readline().strip().split())
+import heapq
 
-n,m=get_ints()
-g=defaultdict(list)
-for i in range(m):
-    a,b,c=get_ints()
-    g[a-1].append((b-1,c))
-dis=[10**15]*n
-dis[0]=0
-Q=[(0,0)]
-heapq.heapify(Q)
+data = sys.stdin.buffer.read().split()
+it = iter(data)
+n = int(next(it))
+m = int(next(it))
 
-while Q:
-    at,d=(heapq.heappop(Q))
-    if d>dis[at]:
+graph = [[] for _ in range(n)]
+for _ in range(m):
+    a = int(next(it)) - 1
+    b = int(next(it)) - 1
+    c = int(next(it))
+    graph[a].append((b, c))
+
+INF = 10**15
+dist = [INF] * n
+dist[0] = 0
+pq = [(0, 0)]
+
+while pq:
+    d, node = heapq.heappop(pq)
+    if d > dist[node]:
         continue
-    for loc,disAB in g[at]:
-        if d+disAB<dis[loc]:
-            dis[loc]=d+disAB
-            heapq.heappush(Q,(loc,d+disAB))
-print(*dis)
-        
-          
+    for neigh, w in graph[node]:
+        nd = d + w
+        if nd < dist[neigh]:
+            dist[neigh] = nd
+            heapq.heappush(pq, (nd, neigh))
+
+print(*dist)
 
