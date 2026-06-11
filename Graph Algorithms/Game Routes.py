@@ -2,6 +2,7 @@ import sys
 from collections import deque
 
 input = sys.stdin.readline
+MOD = 10**9 + 7
 
 def main():
     n, m = map(int, input().split())
@@ -25,31 +26,13 @@ def main():
             if indeg[v] == 0:
                 q.append(v)
 
-    dist = [-10**18] * n
-    parent = [-1] * n
-    dist[0] = 1
-
+    ways = [0] * n
+    ways[0] = 1
     for u in topo:
-        if dist[u] < 0:
-            continue
         for v in g[u]:
-            if dist[u] + 1 > dist[v]:
-                dist[v] = dist[u] + 1
-                parent[v] = u
+            ways[v] = (ways[v] + ways[u]) % MOD
 
-    if dist[n - 1] < 0:
-        print("IMPOSSIBLE")
-        return
-
-    path = []
-    cur = n - 1
-    while cur != -1:
-        path.append(cur + 1)
-        cur = parent[cur]
-    path.reverse()
-
-    print(dist[n - 1])
-    print(*path)
+    print(ways[n - 1])
 
 
 if __name__ == '__main__':
